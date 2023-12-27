@@ -7,11 +7,32 @@ import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
 import DialogTitle from '@mui/material/DialogTitle';
 import AddIcon from '@mui/icons-material/Add';
+import TaskSlice from '../redux/Todoslice';
+import { useDispatch, useSelector } from 'react-redux';
+import { Add } from '../redux/Todoslice';
 
-export default function FormDialog() {
+
+export default function AddTaskDialog() {
     const [open, setOpen] = React.useState(false);
     const [RecipeReviewCard, setRecipeReviewCard] = React.useState();
-
+    const Tasks = useSelector((state) => state.TaskSlice.Task);
+    const [content, setContent] = React.useState("");
+    const [titel, setTitel] = React.useState("");
+    const [id, setId] = React.useState(0);
+    const [time, setTime] = React.useState(0);
+    const Task = {
+        id,
+        titel,
+        content,
+        time,
+        textbox: false
+    }
+    const dispatch = useDispatch()
+    const handleCloseSave = () => {
+        setId(id + 1)
+        dispatch(Add({ task: Task }))
+        handleClose()
+    };
     const handleClickOpen = () => {
         setOpen(true);
     };
@@ -23,6 +44,7 @@ export default function FormDialog() {
 
     return (
         <React.Fragment>
+            <TaskSlice.reducer/>
             <Button onClick={handleClickOpen}>
                 < AddIcon />
             </Button>
@@ -44,7 +66,7 @@ export default function FormDialog() {
                 </DialogContent>
                 <DialogActions>
                     <Button onClick={handleClose}>Cancel</Button>
-                    <Button onClick={handleClose}>save</Button>
+                    <Button onClick={handleCloseSave}>save</Button>
                 </DialogActions>
             </Dialog>
         </React.Fragment>
