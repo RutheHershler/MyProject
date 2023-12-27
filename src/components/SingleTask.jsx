@@ -13,24 +13,12 @@ import DeleteForeverIcon from '@mui/icons-material/DeleteForever';
 import EditIcon from '@mui/icons-material/Edit';
 import Checkbox from '@mui/material/Checkbox';
 
-const ExpandMore = styled((props) => {
-    const { expand, ...other } = props;
-    return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-    transform: !expand ? 'rotate(0deg)' : 'rotate(180deg)',
-    marginLeft: 'auto',
-    transition: theme.transitions.create('transform', {
-        duration: theme.transitions.duration.shortest,
-    }),
-}));
 
-export default function RecipeReviewCard() {
-    const [expanded, setExpanded] = React.useState(false);
+
+export default function TaskCard() {
+    // const [expanded, setExpanded] = React.useState(false);
     const [checked, setChecked] = React.useState(true);
-
-    const handleExpandClick = () => {
-        setExpanded(!expanded);
-    };
+    
 
     const handleChange = (event) => {
         setChecked(event.target.checked);
@@ -40,41 +28,43 @@ export default function RecipeReviewCard() {
         date = (today.getMonth() + 1) + '/' + today.getDate() + '/' + today.getFullYear();
 
     return (
-        <Card sx={{ maxWidth: 345 }}>
-            <CardHeader
-                avatar={
-                    <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
-                        R
-                    </Avatar>
-                }
-                action={
-                    <IconButton aria-label="settings">
-                        <MoreVertIcon />
-                    </IconButton>
-                }
-                title="MyTask"
-                subheader={date}
-            />
-            <CardContent>
-                <Typography variant="body2" color="text.secondary">
-                    enter your tasks
-
-                </Typography>
-            </CardContent>
-            <CardActions disableSpacing>
-                <IconButton aria-label="Delete">
-                    <DeleteForeverIcon />
-                </IconButton>
-                <IconButton aria-label="edit">
-                    <EditIcon />
-                </IconButton>
-                <Checkbox
-                    checked={checked}
-                    onChange={handleChange}
-                    inputProps={{ 'aria-label': 'controlled' }}
+        <>
+            <Card sx={{ maxWidth: 345 }}>
+                <CardHeader
+                    avatar={
+                        <Avatar sx={{ bgcolor: red[500] }} aria-label="recipe">
+                            R
+                        </Avatar>
+                    }
+                    action={
+                        <IconButton aria-label="settings">
+                            <MoreVertIcon />
+                        </IconButton>
+                    }
+                    title="MyTask"
+                    subheader={date}
                 />
-            </CardActions>
-        </Card>
+                <CardContent>
+                    <Typography variant="body2" color="text.secondary">
+                        enter your tasks
+
+                    </Typography>
+                </CardContent>
+                <CardActions disableSpacing>
+                    <IconButton aria-label="Delete">
+                        <DeleteForeverIcon />
+                    </IconButton>
+                    <IconButton aria-label="edit">
+                        <EditIcon />
+                    </IconButton>
+                    <Checkbox
+                        checked={checked}
+                        onChange={handleChange}
+                        inputProps={{ 'aria-label': 'controlled' }}
+                    />
+                </CardActions>
+            </Card>
+        </>
     );
 }
 

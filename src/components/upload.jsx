@@ -32,5 +32,4 @@ const UploadAndDisplayImage = () => {
     </div>
   );
 };
-
 export default UploadAndDisplayImage;
